@@ -1,8 +1,11 @@
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
+
         SwingUtilities.invokeLater(() -> {
             TablePanel tablePanel = new TablePanel();
 
@@ -13,7 +16,7 @@ public class Main {
             frame.add(tablePanel, BorderLayout.CENTER);
 
             JPanel buttonPanel = new JPanel();
-            JButton closeButton = new JButton("Закрыть программу");
+            JButton closeButton = new JButton("Exit");
 
             ConfirmExitDialog exitDialog = new ConfirmExitDialog(frame);
 

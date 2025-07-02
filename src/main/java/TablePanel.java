@@ -13,7 +13,7 @@ public class TablePanel extends JPanel {
 
         for (int i = 1; i <= 16; i++) {
             JButton btn = new JButton("Стол " + i);
-            btn.setBackground(Color.GREEN);
+            btn.setBackground(AppColors.ACCENT);
             int tableId = i;
             btn.addActionListener(e -> showTableMenu(tableId, btn));
             add(btn);

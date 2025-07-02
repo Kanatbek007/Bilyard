@@ -27,15 +27,24 @@ public class TablePanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // 3. Добавляем начальные 16 столов
-        for (int i = 0; i < 4; i++) { // Начинаем с 4 столов вместо 16
+        for (int i = 0; i < 8; i++) { // Начинаем с 4 столов вместо 16
             addTable();
         }
+        setBackground(new Color(0, 0, 0));
+        setOpaque(true);
+
+        tablesContainer.setBackground(new Color(40, 40, 40));
+        tablesContainer.setOpaque(true);
+
+        scrollPane.getViewport().setBackground(new Color(40, 40, 40));
+        scrollPane.setBorder(null);
+
     }
 
     private JPanel createControlPanel() {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        panel.setBackground(Color.LIGHT_GRAY);
+        panel.setBackground(Color.DARK_GRAY);
 
         // Кнопка добавления стола
         JButton addButton = new JButton("Добавить стол");
@@ -57,7 +66,7 @@ public class TablePanel extends JPanel {
                 removeTable();
             } else {
                 JOptionPane.showMessageDialog(this,
-                        "Нельзя удалить первый стол",
+                        "Ошибка",
                         "Ошибка",
                         JOptionPane.WARNING_MESSAGE);
             }

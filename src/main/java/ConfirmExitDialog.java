@@ -1,0 +1,27 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class ConfirmExitDialog {
+
+    private final JFrame parentFrame;
+
+    public ConfirmExitDialog(JFrame parentFrame) {
+        this.parentFrame = parentFrame;
+    }
+
+    public void showDialog() {
+        int result = JOptionPane.showConfirmDialog(
+                parentFrame,
+                "Закрыть программу?",
+                "Выход",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (result == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+}

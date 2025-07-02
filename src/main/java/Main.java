@@ -15,15 +15,7 @@ public class Main {
 
             frame.add(tablePanel, BorderLayout.CENTER);
 
-            JPanel buttonPanel = new JPanel();
-            JButton closeButton = new JButton("Exit");
-
             ConfirmExitDialog exitDialog = new ConfirmExitDialog(frame);
-
-            closeButton.addActionListener(e -> exitDialog.showDialog());
-
-            buttonPanel.add(closeButton);
-            frame.add(buttonPanel, BorderLayout.SOUTH);
 
             frame.pack();
             frame.setLocationRelativeTo(null);

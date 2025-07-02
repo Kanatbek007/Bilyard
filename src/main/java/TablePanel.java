@@ -22,7 +22,7 @@ public class TablePanel extends JPanel {
 
     private JButton createTableButton(int tableId) {
         // Загрузка изображения
-        ImageIcon originalIcon = loadIcon("/icons/table" + tableId + ".png");
+        ImageIcon originalIcon = TableImageLoader.loadTableIcon(getClass(), tableId);
 
         // Создание кнопки с кастомной отрисовкой
         JButton btn = new JButton("Стол " + tableId) {
@@ -66,24 +66,8 @@ public class TablePanel extends JPanel {
         btn.setOpaque(true);
 
         // Обработчик клика
-        btn.addActionListener(e -> showTableMenu(tableId, btn));
+        btn.addActionListener(e -> TableMenuManager.showTableMenu(TablePanel.this, tableId));
 
         return btn;
-    }
-
-    private ImageIcon loadIcon(String path) {
-        try {
-            return new ImageIcon(getClass().getResource(path));
-        } catch (Exception e) {
-            System.err.println("Ошибка загрузки иконки: " + path);
-            return null;
-        }
-    }
-
-    private void showTableMenu(int tableId, JButton btn) {
-        JOptionPane.showMessageDialog(this,
-                "Выбрано: Стол " + tableId,
-                "Меню стола",
-                JOptionPane.INFORMATION_MESSAGE);
     }
 }

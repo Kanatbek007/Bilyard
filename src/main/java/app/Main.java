@@ -5,26 +5,21 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 
+import model.TableManager;
 import view.TablePanel;
 import view.ConfirmExitDialog;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-        FlatDarkLaf.setup();
-
         SwingUtilities.invokeLater(() -> {
-            TablePanel tablePanel = new TablePanel();
+            TableManager tableManager = new TableManager();
 
-            JFrame frame = new JFrame("Bilyard");
+            JFrame frame = new JFrame("Управление столами");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(new BorderLayout());
-
-            frame.add(tablePanel, BorderLayout.CENTER);
-
-            ConfirmExitDialog exitDialog = new ConfirmExitDialog(frame);
-
-            frame.pack();
-            frame.setLocationRelativeTo(null);
+            frame.setSize(800, 600);
+            frame.add(tableManager.getTablePanel());
             frame.setVisible(true);
         });
     }

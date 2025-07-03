@@ -1,3 +1,7 @@
+package view;
+
+import util.TableState;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +11,7 @@ public class TableRenderer {
                 state.isRunning() ?
                         (state.isPaused() ? Color.ORANGE : Color.RED) :
                         Color.GREEN
+
         );
     }
 }

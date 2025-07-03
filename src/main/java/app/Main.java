@@ -1,6 +1,12 @@
+package app;
+
 import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
 import java.awt.*;
+
+import view.TablePanel;
+import view.ConfirmExitDialog;
 
 public class Main {
     public static void main(String[] args) {

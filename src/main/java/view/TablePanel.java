@@ -1,7 +1,12 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import model.TableManager;
+import util.AppColors;
+import util.TableImageLoader;
 
 public class TablePanel extends JPanel {
     private final TableManager tableManager;
@@ -14,11 +19,7 @@ public class TablePanel extends JPanel {
         setLayout(new BorderLayout());
         tableManager = new TableManager();
 
-        // 1. Создаем верхнюю панель управления
-        JPanel controlPanel = createControlPanel();
-        add(controlPanel, BorderLayout.NORTH);
-
-        // 2. Создаем контейнер для кнопок столов с прокруткой
+        // Создаем контейнер для кнопок столов с прокруткой
         tablesContainer = new JPanel(new GridLayout(0, 4, 5, 5));
         tablesContainer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
@@ -26,8 +27,7 @@ public class TablePanel extends JPanel {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.CENTER);
 
-        // 3. Добавляем начальные 16 столов
-        for (int i = 0; i < 8; i++) { // Начинаем с 4 столов вместо 16
+        for (int i = 0; i < 16; i++) {
             addTable();
         }
         setBackground(new Color(0, 0, 0));
@@ -38,50 +38,6 @@ public class TablePanel extends JPanel {
 
         scrollPane.getViewport().setBackground(new Color(40, 40, 40));
         scrollPane.setBorder(null);
-
-    }
-
-    private JPanel createControlPanel() {
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
-        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        panel.setBackground(Color.DARK_GRAY);
-
-        // Кнопка добавления стола
-        JButton addButton = new JButton("Добавить стол");
-        addButton.addActionListener(e -> {
-            if (tableCounter <= MAX_TABLES) {
-                addTable();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Максимальное количество столов (" + MAX_TABLES + ") достигнуто",
-                        "Ошибка",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-        });
-
-        // Кнопка удаления стола
-        JButton removeButton = new JButton("Удалить стол");
-        removeButton.addActionListener(e -> {
-            if (tableCounter > 1) { // Нельзя удалить первый стол (tableId = 1)
-                removeTable();
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Ошибка",
-                        "Ошибка",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-        });
-
-        // Настройка кнопок
-        for (JButton btn : new JButton[]{addButton, removeButton}) {
-            btn.setPreferredSize(new Dimension(120, 30));
-            btn.setFocusPainted(false);
-        }
-
-        panel.add(addButton);
-        panel.add(removeButton);
-
-        return panel;
     }
 
     private void addTable() {
@@ -91,15 +47,6 @@ public class TablePanel extends JPanel {
         JButton btn = createTableButton(tableId);
         tablesContainer.add(btn);
         tableButtons.put(tableId, btn);
-        revalidate();
-        repaint();
-    }
-
-    private void removeTable() {
-        if (tableCounter <= 1) return; // Не удаляем первый стол
-
-        int lastId = --tableCounter;
-        tablesContainer.remove(tableButtons.remove(lastId));
         revalidate();
         repaint();
     }
@@ -128,7 +75,6 @@ public class TablePanel extends JPanel {
             }
         };
 
-        // Уменьшенные размеры и настройки
         btn.setPreferredSize(new Dimension(100, 80));
         btn.setBackground(AppColors.ACCENT);
         btn.setForeground(Color.WHITE);

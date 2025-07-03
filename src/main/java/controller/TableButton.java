@@ -1,5 +1,8 @@
+package controller;
+
 import javax.swing.*;
 import java.awt.*;
+import util.AppColors;
 
 public class TableButton extends JButton {
     private final ImageIcon originalIcon;

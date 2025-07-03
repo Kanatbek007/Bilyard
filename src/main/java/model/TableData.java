@@ -1,5 +1,8 @@
+package model;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import util.TableState;
 
 public class TableData implements TableState {
     private Date startTime;

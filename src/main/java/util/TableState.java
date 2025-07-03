@@ -1,4 +1,4 @@
-import java.util.Date;
+package util;
 
 public interface TableState {
     void startTimer();
